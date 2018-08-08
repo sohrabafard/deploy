@@ -1,10 +1,11 @@
 var execFile = require('child_process').execFile;
 var githubhook = require('githubhook');
+var config = require('./config.json');
 var github = githubhook({
-    host: '185.49.84.106',
-    port: 3420,
-    path: '/gitback',
-    secret: 'my-secret',
+    host: config.host,
+    port: config.port,
+    path: config.url,
+    secret: config.password,
     logger: console,
 });
 
@@ -15,7 +16,7 @@ github.on('deploy-ex:refs/heads/master', function (data) {
     var execOptions = {
         maxBuffer: 2048 * 2048 // Increase max buffer
     };
-    execFile('/home/alaa/deploy/deploy.sh', execOptions, function(error, stdout, stderr) {
+    execFile(config.script, execOptions, function(error, stdout, stderr) {
         if( error )
         {
             console.log(error)
