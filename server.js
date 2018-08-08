@@ -11,7 +11,7 @@ var github = githubhook({
 
 github.listen();
 
-github.on('deploy-ex:refs/heads/master', function (data) {
+github.on('alaatv:refs/heads/master', function (data) {
     // Exec a shell script
     var execOptions = {
         maxBuffer: 2048 * 2048 // Increase max buffer
